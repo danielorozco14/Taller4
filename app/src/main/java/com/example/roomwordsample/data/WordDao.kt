@@ -5,6 +5,11 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 
+
+/**
+ * INTERFAZ PARA TODAS LAS OPERACIONES DE SQLite
+ */
+
 @Dao
 interface WordDao {
 

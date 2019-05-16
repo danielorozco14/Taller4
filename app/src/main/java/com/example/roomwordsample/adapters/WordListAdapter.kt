@@ -13,19 +13,18 @@ import com.example.roomwordsample.data.Word
  * CLASE QUE CONFIGURA EL RECYCLER VIEW
  */
 
-class WordListAdapter internal constructor(
-    context: Context):RecyclerView.Adapter<WordListAdapter.WordViewHolder>(){
+class WordListAdapter internal constructor(context: Context):RecyclerView.Adapter<WordListAdapter.WordViewHolder>(){
 
     private val inflater:LayoutInflater= LayoutInflater.from(context)
     private var words= emptyList<Word>()//CACHED COPY OF WORDS
 
+    //CLASE QUE OBTIENE EL VIEW QUE SE RECICLARA
     inner class WordViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val wordItemView:TextView=itemView.findViewById(R.id.textView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
-        val itemView= inflater.inflate(R.layout.recyclerview_item,parent
-        ,false)
+        val itemView= inflater.inflate(R.layout.recyclerview_item,parent,false)
         return WordViewHolder(itemView)
     }
 
