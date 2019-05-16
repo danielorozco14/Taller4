@@ -5,6 +5,9 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.roomwordsample.adapters.WordListAdapter
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -14,6 +17,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        //SE INICIALIZA EL RECYCLER VIEW
+        initRecyclerView()
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -36,4 +42,12 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    fun initRecyclerView(){
+        val recyclerView=findViewById<RecyclerView>(R.id.recyclerview)
+        val adapter = WordListAdapter(this)
+        recyclerView.adapter=adapter
+        recyclerView.layoutManager=LinearLayoutManager(this)
+    }
+
 }
