@@ -27,7 +27,7 @@ class WordViewModel(application: Application):AndroidViewModel(application){
         allWords= repository.allWords
     }
 
-    //WRAPPER insert() llama al metode insert() de Repository
+    //WRAPPER insert() llama al metodo insert() de Repository
     fun insert(word:Word) = viewModelScope.launch(Dispatchers.IO){
         repository.insert(word)
     }
