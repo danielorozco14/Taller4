@@ -2,20 +2,17 @@ package com.example.roomwordsample
 
 import android.app.Activity
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.roomwordsample.adapters.WordListAdapter
-import com.example.roomwordsample.data.Word
+import com.example.roomwordsample.data.entities.Word
 import com.example.roomwordsample.viewModel.WordViewModel
 
 import kotlinx.android.synthetic.main.activity_main.*

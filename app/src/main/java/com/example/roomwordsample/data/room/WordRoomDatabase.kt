@@ -1,11 +1,12 @@
-package com.example.roomwordsample.data
+package com.example.roomwordsample.data.room
 
 import android.content.Context
-import androidx.room.Dao
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.roomwordsample.data.daos.WordDao
+import com.example.roomwordsample.data.entities.Word
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

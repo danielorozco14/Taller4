@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.roomwordsample.R
-import com.example.roomwordsample.data.Word
+import com.example.roomwordsample.data.entities.Word
 
 /**
  * CLASE QUE CONFIGURA EL RECYCLER VIEW

@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.roomwordsample.data.Word
-import com.example.roomwordsample.data.WordRoomDatabase
+import com.example.roomwordsample.data.entities.Word
+import com.example.roomwordsample.data.room.WordRoomDatabase
 import com.example.roomwordsample.repository.WordRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,7 +28,7 @@ class WordViewModel(application: Application):AndroidViewModel(application){
     }
 
     //WRAPPER insert() llama al metodo insert() de Repository
-    fun insert(word:Word) = viewModelScope.launch(Dispatchers.IO){
+    fun insert(word: Word) = viewModelScope.launch(Dispatchers.IO){
         repository.insert(word)
     }
 
