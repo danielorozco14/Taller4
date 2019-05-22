@@ -8,15 +8,12 @@ import androidx.room.PrimaryKey
  * Class that works as an Sql Table
  */
 
-@Entity(tableName = "Book_table")
-class Book (
-
+@Entity(tableName = "Publisher_table")
+class Publisher (
+    @ColumnInfo(name = "publisher_name")
+    var name_publisher:String
+){
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name="id_book")
-    val id:Int
-
-
-
-
-)
-
+    @ColumnInfo(name = "publisher_id")
+    var id_publisher:Int=1
+}

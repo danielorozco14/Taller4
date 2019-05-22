@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">RoomWordSample</string>
     <string name="action_settings">Settings</string>
+    <string name="lorem_30_string">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam maximus fermentum lorem, nec bibendum ligula iaculis et. Cras semper eros a congue luctus. Integer porttitor ut mauris a aliquet. Pellentesque.</string>
     <string name="hint_word">Word...</string>
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>

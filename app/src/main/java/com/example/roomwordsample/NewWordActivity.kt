@@ -14,22 +14,41 @@ import android.widget.EditText
 
 class NewWordActivity : AppCompatActivity() {
 
-    private lateinit var editWordView: EditText
+    private lateinit var editBookTitleView: EditText
+    private lateinit var editBookAuthorView : EditText
+    private lateinit var editBookResumeView:EditText
+    private lateinit var editBookPublisherView: EditText
+    private lateinit var editBookIsbnView:EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_word)
 
-        editWordView = findViewById(R.id.edit_word)
+        editBookTitleView = findViewById(R.id.edit_book_title)
+        editBookAuthorView = findViewById(R.id.edit_book_author)
+        editBookResumeView=findViewById(R.id.edit_book_resumen)
+        editBookIsbnView = findViewById(R.id.edit_book_ISBN)
+        editBookPublisherView=findViewById(R.id.edit_book_PUBLISHER)
 
         val button = findViewById<Button>(R.id.button_save)
         button.setOnClickListener {
             val replyIntent = Intent()
-            if (TextUtils.isEmpty(editWordView.text)) {
+            if (TextUtils.isEmpty(editBookTitleView.text)) {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
-                val word = editWordView.text.toString()
-                replyIntent.putExtra(EXTRA_REPLY, word)
+                val Book_title = editBookTitleView.text.toString()
+                val Book_author:String = editBookAuthorView.text.toString()
+                val Book_resume:String = editBookResumeView.text.toString()
+                val Book_isbn:String =  editBookIsbnView.text.toString()
+                val Book_publisher:String = editBookPublisherView.text.toString()
+
+
+                replyIntent.putExtra(EXTRA_BOOK_TITLE, Book_title)
+                replyIntent.putExtra(EXTRA_BOOK_AUTHOR,Book_author)
+                replyIntent.putExtra(EXTRA_BOOK_PUBLISHER,Book_publisher)
+                replyIntent.putExtra(EXTRA_BOOK_RESUME,Book_resume)
+                replyIntent.putExtra(EXTRA_BOOK_ISBN,Book_isbn)
+
                 setResult(Activity.RESULT_OK, replyIntent)
             }
             finish()
@@ -38,6 +57,10 @@ class NewWordActivity : AppCompatActivity() {
 
     }
     companion object {
-        const val EXTRA_REPLY="com.example.android.wordlistsql.REPLY"
+        const val EXTRA_BOOK_TITLE="com.example.android.wordlistsql.REPLY"
+        const val EXTRA_BOOK_AUTHOR="com.example.android.wordlistsql.REPLY2"
+        const val EXTRA_BOOK_RESUME="com.example.android.wordlistsql.REPLY3"
+        const val EXTRA_BOOK_ISBN="com.example.android.wordlistsql.REPLY4"
+        const val EXTRA_BOOK_PUBLISHER="com.example.android.worlistsql.REPLY5"
     }
 }

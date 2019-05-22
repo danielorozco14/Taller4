@@ -11,15 +11,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.roomwordsample.adapters.WordListAdapter
-import com.example.roomwordsample.data.entities.Word
-import com.example.roomwordsample.viewModel.WordViewModel
+import com.example.roomwordsample.adapters.BookListAdapter
+import com.example.roomwordsample.data.entities.Book
+import com.example.roomwordsample.viewModel.BookViewModel
 
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var wordViewModel: WordViewModel
+    private lateinit var bookViewModel: BookViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,14 +28,14 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         //SE INICIALIZA EL RECYCLER VIEW
-        val adapter = WordListAdapter(this)
+        val adapter = BookListAdapter(this)
         initRecyclerView(adapter)
 
         //OBTENIENDO OBJETO ViewModel De ViewModelProvider
-        wordViewModel= ViewModelProviders.of(this).get(WordViewModel::class.java)
+        bookViewModel= ViewModelProviders.of(this).get(BookViewModel::class.java)
 
-        //AGREGANDO OBSERVADOR AL LIVEDATA QUE REGRESA LA FUNCION getAllWords()
-        wordViewModel.allWords.observe(this, Observer { words ->
+        //AGREGANDO OBSERVADOR AL LIVEDATA QUE REGRESA LA FUNCION getAllBooks()
+        bookViewModel.allBooks.observe(this, Observer { words ->
             //ACTUALIZANDO LA COPIA DE LAS PALABRAS EN EL ADAPTADOR
             words?.let { adapter.setWords(it) }
         })
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun initRecyclerView( adapter:WordListAdapter){
+    fun initRecyclerView( adapter:BookListAdapter){
         val recyclerView=findViewById<RecyclerView>(R.id.recyclerview)
         recyclerView.adapter=adapter
         recyclerView.layoutManager=LinearLayoutManager(this)
@@ -72,15 +72,16 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * If the activity returns with RESULT_OK,
-     * insert the returned word into the database by calling the insert() method of the WordViewModel.
+     * insert the returned word into the database by calling the insert() method of the BookViewModel.
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK){
             data?.let {
-                val word= Word(it.getStringExtra(NewWordActivity.EXTRA_REPLY))
-                wordViewModel.insert(word)
+                val book= Book(it.getStringExtra(NewWordActivity.EXTRA_BOOK_TITLE),it.getStringExtra(NewWordActivity.EXTRA_BOOK_RESUME),
+                    it.getStringExtra(NewWordActivity.EXTRA_BOOK_ISBN),1)
+                bookViewModel.insert(book)
             }
         }else{
             Toast.makeText(applicationContext,
