@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.roomwordsample.R
 import com.example.roomwordsample.data.entities.Book
+import kotlinx.android.synthetic.main.activity_new_word.view.*
 
 
 /**
@@ -21,7 +23,18 @@ class BookListAdapter internal constructor(context: Context):RecyclerView.Adapte
 
     //CLASE QUE OBTIENE EL VIEW QUE SE RECICLARA
     inner class WordViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        val bookItemView:TextView=itemView.findViewById(R.id.book_title_View)
+        val bookItemView:CardView=itemView.findViewById(R.id.book_title_View)
+
+        fun bind(item: Book /**, clickListener: (Book) -> Unit**/) = with(itemView){
+            /**Glide.with(itemView.context)
+                .load(item.img)
+                .placeholder(R.drawable.ic_launcher_background)
+                .into(coin_image_cv)**/
+
+            edit_book_title.setText(item.titulo)
+
+           // this.setOnClickListener { clickListener(item) }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
@@ -35,7 +48,7 @@ class BookListAdapter internal constructor(context: Context):RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val current = books[position]
-        holder.bookItemView.text=current.titulo
+        holder.bind(books[position] /**, clickListener**/)
 
     }
 

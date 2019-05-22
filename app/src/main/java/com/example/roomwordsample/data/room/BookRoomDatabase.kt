@@ -55,7 +55,7 @@ abstract class BookRoomDatabase : RoomDatabase() {
             super.onOpen(db)
             INSTANCE?.let { database ->
                 scope.launch(Dispatchers.IO) {
-                    populateDatabase(database.bookDao())
+                    populateDatabase(database.bookDao(),database.publisherDao())
                 }
             }
         }
