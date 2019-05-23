@@ -1,5 +1,6 @@
 package com.example.roomwordsample.data.entities
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 
@@ -12,10 +13,17 @@ import androidx.room.ForeignKey
     primaryKeys = arrayOf("authorID","bookID"),
     foreignKeys = arrayOf(ForeignKey(entity = Author::class,
         parentColumns = arrayOf("id_author"),
-        childColumns = arrayOf("ID_author")),
+        childColumns = arrayOf("authorID")),
         ForeignKey(entity = Book::class,
             parentColumns = arrayOf("book_id"),
-            childColumns = arrayOf("ID_book")))
+            childColumns = arrayOf("bookID")))
 )
 
-class AuthorBookJoin(var authorID:Int,var bookID:Int)
+class AuthorBookJoin(
+
+    @ColumnInfo(name = "authorID")
+    var authorID:Int,
+    @ColumnInfo(name = "bookID")
+    var bookID:Int
+
+)

@@ -51,6 +51,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.archLifecycleVersion"
     kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
 
+    //CARDVIEW SUPPORT
+    implementation "androidx.cardview:cardview:1.0.0"
     // Support of coroutines en kotlin
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"

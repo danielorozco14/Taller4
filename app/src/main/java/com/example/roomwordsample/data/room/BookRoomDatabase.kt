@@ -5,10 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.roomwordsample.data.daos.AuthorDao
-import com.example.roomwordsample.data.daos.BookDao
-import com.example.roomwordsample.data.daos.PublisherDao
-import com.example.roomwordsample.data.daos.TagsDao
+import com.example.roomwordsample.data.daos.*
 import com.example.roomwordsample.data.entities.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,7 +18,7 @@ abstract class BookRoomDatabase : RoomDatabase() {
     abstract fun bookDao(): BookDao
     abstract fun authorDao():AuthorDao
     abstract fun publisherDao():PublisherDao
-    abstract fun authorBookJoinDao():AuthorBookJoin
+    abstract fun authorBookJoinDao():AuthorBookDao
     abstract fun tagsDao(): TagsDao
 
     companion object {
@@ -55,28 +52,41 @@ abstract class BookRoomDatabase : RoomDatabase() {
             super.onOpen(db)
             INSTANCE?.let { database ->
                 scope.launch(Dispatchers.IO) {
-                    populateDatabase(database.bookDao(),database.publisherDao())
+                    populateDatabase(database.bookDao(),database.publisherDao(),database.authorDao(),database.authorBookJoinDao())
                 }
             }
         }
         //FUNCION QUE BORRA LA BASE DE DATOS CADA VEZ QUE SE INICIA LA APP
         //Y LA LLENA CON DOS PALABRAS BASE
-        suspend fun populateDatabase(bookDao: BookDao,publisherDao: PublisherDao) {
+        suspend fun populateDatabase(bookDao: BookDao,publisherDao: PublisherDao,authorDao: AuthorDao,authorBookDao: AuthorBookDao) {
+            /**
+            authorDao.deleteAllAuthors()
             publisherDao.deleteAllPublishers()
-            bookDao.deleteAllBooks()
+            bookDao.deleteAllBooks()**/
+
+
 
             var publisher=Publisher("Santillana")
             publisherDao.insert(publisher)
             publisher=Publisher("Pearson")
             publisherDao.insert(publisher)
 
-            var word = Book("Hello","Best Hello World in The East","2345UAED",1)
-            bookDao.insert(word)
-            word = Book("World","Best Hello World in The West","3456DASO",2)
-            bookDao.insert(word)
+            var book = Book("Hello","Best Hello World in The East","2345UAED",1)
+            bookDao.insert(book)
+            book = Book("World","Best Hello World in The West","3456DASO",1)
+            bookDao.insert(book)
+
+            var author=Author("Sor Juana Ines De La Cruz")
+            authorDao.insert(author)
+            author=Author("Turbo Tania")
+            authorDao.insert(author)
 
 
 
+            var authorBookJoin=AuthorBookJoin(1,1)
+            authorBookDao.insert(authorBookJoin)
+            /**authorBookJoin=AuthorBookJoin(3,2)
+            authorBookDao.insert(authorBookJoin)**/
 
 
         }

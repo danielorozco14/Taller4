@@ -23,7 +23,7 @@ class BookListAdapter internal constructor(context: Context):RecyclerView.Adapte
 
     //CLASE QUE OBTIENE EL VIEW QUE SE RECICLARA
     inner class WordViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        val bookItemView:CardView=itemView.findViewById(R.id.book_title_View)
+        val bookItemView:TextView=itemView.findViewById(R.id.book_title_View)
 
         fun bind(item: Book /**, clickListener: (Book) -> Unit**/) = with(itemView){
             /**Glide.with(itemView.context)
@@ -31,7 +31,7 @@ class BookListAdapter internal constructor(context: Context):RecyclerView.Adapte
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(coin_image_cv)**/
 
-            edit_book_title.setText(item.titulo)
+            //edit_book_title.setText(item.titulo)
 
            // this.setOnClickListener { clickListener(item) }
         }
@@ -48,7 +48,7 @@ class BookListAdapter internal constructor(context: Context):RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val current = books[position]
-        holder.bind(books[position] /**, clickListener**/)
+        //holder.bind(books[position] /**, clickListener**/)
 
     }
 
