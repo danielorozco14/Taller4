@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-@Database(entities = arrayOf(Book::class,Author::class,Publisher::class,AuthorBookJoin::class,Tags::class), version = 3)
+@Database(entities = arrayOf(Book::class,Author::class,Publisher::class,AuthorBookJoin::class,Tags::class), version = 4)
 abstract class BookRoomDatabase : RoomDatabase() {
 
     abstract fun bookDao(): BookDao
@@ -64,9 +64,6 @@ abstract class BookRoomDatabase : RoomDatabase() {
             authorDao.deleteAllAuthors()
             bookDao.deleteAllBooks()
             publisherDao.deleteAllPublishers()
-
-
-
 
             var publisher=Publisher("Santillana")
             publisherDao.insert(publisher)

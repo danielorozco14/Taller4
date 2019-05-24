@@ -12,7 +12,7 @@ class Tags(
     var tag_name:String
 
 ){
-    @PrimaryKey
-    @ColumnInfo
-    var tag_id:Int=1
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name="tag_id")
+    var tag_id:Int=0
 }
