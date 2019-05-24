@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-@Database(entities = arrayOf(Book::class,Author::class,Publisher::class,AuthorBookJoin::class,Tags::class), version = 2)
+@Database(entities = arrayOf(Book::class,Author::class,Publisher::class,AuthorBookJoin::class,Tags::class), version = 3)
 abstract class BookRoomDatabase : RoomDatabase() {
 
     abstract fun bookDao(): BookDao
@@ -39,6 +39,7 @@ abstract class BookRoomDatabase : RoomDatabase() {
                     BookRoomDatabase::class.java,
                     "Books_database"
                 ).addCallback(WordDatabaseCallback(scope))
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 return instance
@@ -61,8 +62,9 @@ abstract class BookRoomDatabase : RoomDatabase() {
         suspend fun populateDatabase(bookDao: BookDao,publisherDao: PublisherDao,authorDao: AuthorDao){//,authorBookDao: AuthorBookDao) {
 
             authorDao.deleteAllAuthors()
-            publisherDao.deleteAllPublishers()
             bookDao.deleteAllBooks()
+            publisherDao.deleteAllPublishers()
+
 
 
 

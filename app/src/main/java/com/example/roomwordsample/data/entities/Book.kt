@@ -4,6 +4,7 @@ import android.media.Image
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.ForeignKey.CASCADE
 import androidx.room.PrimaryKey
 
 /**
@@ -14,7 +15,7 @@ import androidx.room.PrimaryKey
     tableName = "Book_table",
     foreignKeys = arrayOf(ForeignKey(entity = Publisher::class,
         parentColumns= arrayOf("publisher_id"),
-        childColumns= arrayOf("publisher_id"))   /**,
+        childColumns= arrayOf("publisher_id"),onDelete = CASCADE)   /**,
      ForeignKey(entity = Author::class,
         parentColumns = arrayOf("id_author"),childColumns = arrayOf("FK_ID_book"))**/)
 )
