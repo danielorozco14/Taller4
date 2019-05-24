@@ -1,29 +1,31 @@
 package com.example.roomwordsample.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.roomwordsample.R
+import com.example.roomwordsample.data.entities.Author
 import com.example.roomwordsample.data.entities.Book
-import kotlinx.android.synthetic.main.activity_new_word.view.*
 
 
 /**
  * CLASE QUE CONFIGURA EL RECYCLER VIEW
  */
 
-class BookListAdapter internal constructor(context: Context):RecyclerView.Adapter<BookListAdapter.WordViewHolder>(){
+class BookListAdapter internal constructor(context: Context):RecyclerView.Adapter<BookListAdapter.BookViewHolder>(){
 
-    private val inflater:LayoutInflater= LayoutInflater.from(context)
-    private var books= emptyList<Book>()//CACHED COPY OF WORDS
+    private var booksList= emptyList<Book>()//CACHED COPY OF BOOKS
+    private var authors=emptyList<Author>()//CACHED COPY OF AUTHORS
 
     //CLASE QUE OBTIENE EL VIEW QUE SE RECICLARA
-    inner class WordViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        val bookItemView:TextView=itemView.findViewById(R.id.book_title_View)
+    inner class BookViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
+        //Crear todas las variables necesarias para vincular los datos al cardView
+        val bookItemViewTitle:TextView=itemView.findViewById(R.id.book_title_View)
+        //val bookItemViewAuthor:TextView=itemView.findViewById(R.id.book_author_View)
 
         fun bind(item: Book /**, clickListener: (Book) -> Unit**/) = with(itemView){
             /**Glide.with(itemView.context)
@@ -37,24 +39,33 @@ class BookListAdapter internal constructor(context: Context):RecyclerView.Adapte
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
-        val itemView= inflater.inflate(R.layout.book_cardview,parent,false)
-        return WordViewHolder(itemView)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
+
+        val itemView=LayoutInflater.from(parent.context).inflate(R.layout.book_cardview, parent, false) //inflater.inflate(R.layout.book_cardview,parent,false)
+        Log.d("MEKGO","INFLANDO book_cardview en BookListAdapter")
+        return BookViewHolder(itemView)
     }
 
     override fun getItemCount(): Int {
-       return books.size
+        Log.d("MEKGO","TAMANIO DE LA LISTA booksList en BookListAdapter: "+booksList.size.toString())
+       return booksList.size
     }
 
-    override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
-        val current = books[position]
-        //holder.bind(books[position] /**, clickListener**/)
+    override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
+        val current = booksList[position]
+        Log.d("MEKGO","OnBindViewHolder BookListAdapter")
+        //val current2:Author= authors[position]
+        holder.bookItemViewTitle.text=current.titulo
+        //holder.bookItemViewTitle.text=current2.name_author
+        //holder.bind(booksList[position] /**, clickListener**/)
 
     }
 
-    internal fun setWords(books:List<Book>){
-        this.books=books
+    internal fun setBooks(books:List<Book>){
+        Log.d("MEKGO","setBooks BookListAdapter")
+        this.booksList=books
         notifyDataSetChanged()
+
     }
 
 }

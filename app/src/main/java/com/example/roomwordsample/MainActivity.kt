@@ -1,5 +1,4 @@
 package com.example.roomwordsample
-
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -16,11 +15,12 @@ import com.example.roomwordsample.data.entities.Book
 import com.example.roomwordsample.viewModel.BookViewModel
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var bookViewModel: BookViewModel
-
+    private lateinit var viewManager:RecyclerView.LayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,8 +28,13 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         //SE INICIALIZA EL RECYCLER VIEW
+        //val adapter = BookListAdapter(this)
+        //initRecyclerView(adapter)
+
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
         val adapter = BookListAdapter(this)
-        initRecyclerView(adapter)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
         //OBTENIENDO OBJETO ViewModel De ViewModelProvider
         bookViewModel= ViewModelProviders.of(this).get(BookViewModel::class.java)
@@ -37,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         //AGREGANDO OBSERVADOR AL LIVEDATA QUE REGRESA LA FUNCION getAllBooks()
         bookViewModel.allBooks.observe(this, Observer { words ->
             //ACTUALIZANDO LA COPIA DE LAS PALABRAS EN EL ADAPTADOR
-            words?.let { adapter.setWords(it) }
+            words?.let { adapter.setBooks(it) }
         })
 
         //CUANDO EL USUARIO TOCA EL BOTON '+' SE LANZA LA ACTIVIDAD
@@ -65,9 +70,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun initRecyclerView( adapter:BookListAdapter){
-        val recyclerView=findViewById<RecyclerView>(R.id.recyclerview)
-        recyclerView.adapter=adapter
-        recyclerView.layoutManager=LinearLayoutManager(this)
+        viewManager= LinearLayoutManager(this)
+        recyclerview.apply {
+            setHasFixedSize(true)
+            layoutManager=viewManager
+            recyclerview.adapter=adapter
+        }
+        //recyclerView.adapter=adapter
+        //recyclerView.layoutManager=LinearLayoutManager(this)
     }
 
     /**

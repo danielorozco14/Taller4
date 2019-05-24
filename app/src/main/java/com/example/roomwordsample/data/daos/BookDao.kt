@@ -18,6 +18,8 @@ interface BookDao {
     @Query("SELECT * FROM book_table")
     fun getAllBooks():LiveData<List<Book>>
 
+
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(book: Book)
 

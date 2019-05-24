@@ -3,6 +3,7 @@ package com.example.roomwordsample.data.daos
 import androidx.core.provider.FontsContractCompat
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.roomwordsample.data.entities.Author
 import com.example.roomwordsample.data.entities.AuthorBookJoin
@@ -12,7 +13,7 @@ import com.example.roomwordsample.data.entities.Book
 @Dao
 interface AuthorBookDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(authorBookJoin: AuthorBookJoin);
 
     /**

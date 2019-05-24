@@ -18,5 +18,5 @@ class Author (
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id_author")
-    var id_author:Int = 1
+    var id_author:Int = 0
 }

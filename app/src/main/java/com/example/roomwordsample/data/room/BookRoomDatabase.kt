@@ -52,17 +52,17 @@ abstract class BookRoomDatabase : RoomDatabase() {
             super.onOpen(db)
             INSTANCE?.let { database ->
                 scope.launch(Dispatchers.IO) {
-                    populateDatabase(database.bookDao(),database.publisherDao(),database.authorDao(),database.authorBookJoinDao())
+                    populateDatabase(database.bookDao(),database.publisherDao(),database.authorDao())//,database.authorBookJoinDao())
                 }
             }
         }
         //FUNCION QUE BORRA LA BASE DE DATOS CADA VEZ QUE SE INICIA LA APP
         //Y LA LLENA CON DOS PALABRAS BASE
-        suspend fun populateDatabase(bookDao: BookDao,publisherDao: PublisherDao,authorDao: AuthorDao,authorBookDao: AuthorBookDao) {
-            /**
+        suspend fun populateDatabase(bookDao: BookDao,publisherDao: PublisherDao,authorDao: AuthorDao){//,authorBookDao: AuthorBookDao) {
+
             authorDao.deleteAllAuthors()
             publisherDao.deleteAllPublishers()
-            bookDao.deleteAllBooks()**/
+            bookDao.deleteAllBooks()
 
 
 
@@ -73,7 +73,7 @@ abstract class BookRoomDatabase : RoomDatabase() {
 
             var book = Book("Hello","Best Hello World in The East","2345UAED",1)
             bookDao.insert(book)
-            book = Book("World","Best Hello World in The West","3456DASO",1)
+            book = Book("World","Best Hello World in The West","3456DASO",2)
             bookDao.insert(book)
 
             var author=Author("Sor Juana Ines De La Cruz")
@@ -83,8 +83,8 @@ abstract class BookRoomDatabase : RoomDatabase() {
 
 
 
-            var authorBookJoin=AuthorBookJoin(1,1)
-            authorBookDao.insert(authorBookJoin)
+           // var authorBookJoin=AuthorBookJoin(1,1)
+            //authorBookDao.insert(authorBookJoin)
             /**authorBookJoin=AuthorBookJoin(3,2)
             authorBookDao.insert(authorBookJoin)**/
 
