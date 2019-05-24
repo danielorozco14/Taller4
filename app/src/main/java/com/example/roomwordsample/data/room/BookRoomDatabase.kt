@@ -80,7 +80,7 @@ abstract class BookRoomDatabase : RoomDatabase() {
 
             var author=Author("Sor Juana Ines De La Cruz")
             authorDao.insert(author)
-            author=Author("Turbo Tania")
+            author=Author("Michael Jackson")
             authorDao.insert(author)
 
 
