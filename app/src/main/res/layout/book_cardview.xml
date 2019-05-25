@@ -17,16 +17,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_background" />
-
+                    android:src="@drawable/ic_launcher_background"/>
+            <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_star_black_24dp"
+                    android:id="@+id/starFav" android:layout_marginBottom="152dp"
+                    android:layout_alignBottom="@+id/data_container_ll_cv" android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true" android:layout_marginRight="34dp"
+                    android:layout_marginEnd="34dp"/>
             <TextView
                     android:id="@+id/book_title_View"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@id/book_imageView"
-                    android:layout_alignRight="@id/book_imageView"
+                    android:layout_height="45dp"
                     android:layout_alignBottom="@id/book_imageView"
-                    android:layout_margin="16dp"
 
                     android:background="#65000000"
                     android:gravity="end"
@@ -36,7 +40,10 @@
 
                     android:text="book_title"
                     android:textColor="#fff"
-                    android:textSize="25sp" />
+                    android:textSize="25sp" android:layout_marginLeft="4dp" android:layout_marginTop="16dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginBottom="83dp"
+                    android:layout_alignParentStart="true" android:layout_alignParentLeft="true"/>
 
             <TextView
                     android:id="@+id/book_author_View"
@@ -46,7 +53,6 @@
                     android:layout_alignLeft="@id/book_imageView"
                     android:layout_alignTop="@id/book_imageView"
 
-                    android:layout_margin="16dp"
                     android:background="#65000000"
 
                     android:gravity="end"
@@ -55,7 +61,9 @@
                     android:text="book_author"
                     android:textColor="#fff"
 
-                    android:textSize="25sp" />
+                    android:textSize="25sp" android:layout_marginLeft="220dp" android:layout_marginTop="83dp"
+                    android:layout_marginStart="220dp" android:layout_marginRight="16dp" android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"/>
 
             <LinearLayout
                     android:id="@+id/data_container_ll_cv"
@@ -76,6 +84,7 @@
 
 
             </LinearLayout>
+
 
         </RelativeLayout>
 

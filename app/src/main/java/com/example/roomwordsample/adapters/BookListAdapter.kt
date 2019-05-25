@@ -26,6 +26,7 @@ class BookListAdapter internal constructor(context: Context):RecyclerView.Adapte
         //Crear todas las variables necesarias para vincular los datos al cardView
         val bookItemViewTitle:TextView=itemView.findViewById(R.id.book_title_View)
         val bookItemViewAuthor:TextView=itemView.findViewById(R.id.book_author_View)
+        val bookItemViewResumen:TextView=itemView.findViewById(R.id.book_resumen)
 
         fun bind(item: Book /**, clickListener: (Book) -> Unit**/) = with(itemView){
             /**Glide.with(itemView.context)
@@ -59,6 +60,7 @@ class BookListAdapter internal constructor(context: Context):RecyclerView.Adapte
         Log.d("MEKGO","OnBindViewHolder BookListAdapter")
         //val current2:Author= authors[position]
         holder.bookItemViewTitle.text=currentBook.titulo
+        holder.bookItemViewResumen.text=currentBook.resumen
         //holder.bookItemViewAuthor.text=currentAuthor.name_author
 
         //holder.bookItemViewTitle.text=current2.name_author
