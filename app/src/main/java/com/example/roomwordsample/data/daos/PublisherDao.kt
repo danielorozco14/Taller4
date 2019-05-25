@@ -17,6 +17,9 @@ interface PublisherDao {
     @Query("SELECT * FROM publisher_table")
     fun getAllPublishers():LiveData<List<Publisher>>
 
+    @Query("SELECT * FROM publisher_table")
+    fun getPublishers():List<Publisher>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(publisher: Publisher)
 

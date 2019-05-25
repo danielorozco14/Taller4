@@ -1,8 +1,6 @@
 package com.example.roomwordsample.data.entities
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 /**
  * Class that works as an Sql Table

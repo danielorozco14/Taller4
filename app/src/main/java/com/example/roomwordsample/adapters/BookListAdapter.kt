@@ -19,13 +19,13 @@ import com.example.roomwordsample.data.entities.Book
 class BookListAdapter internal constructor(context: Context):RecyclerView.Adapter<BookListAdapter.BookViewHolder>(){
 
     private var booksList= emptyList<Book>()//CACHED COPY OF BOOKS
-    private var authors=emptyList<Author>()//CACHED COPY OF AUTHORS
+    private var authorsList=emptyList<Author>()//CACHED COPY OF AUTHORS
 
     //CLASE QUE OBTIENE EL VIEW QUE SE RECICLARA
     inner class BookViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         //Crear todas las variables necesarias para vincular los datos al cardView
         val bookItemViewTitle:TextView=itemView.findViewById(R.id.book_title_View)
-        //val bookItemViewAuthor:TextView=itemView.findViewById(R.id.book_author_View)
+        val bookItemViewAuthor:TextView=itemView.findViewById(R.id.book_author_View)
 
         fun bind(item: Book /**, clickListener: (Book) -> Unit**/) = with(itemView){
             /**Glide.with(itemView.context)
@@ -51,11 +51,16 @@ class BookListAdapter internal constructor(context: Context):RecyclerView.Adapte
        return booksList.size
     }
 
+
+
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
-        val current = booksList[position]
+        val currentBook = booksList[position]
+        //val currentAuthor=authorsList[position]
         Log.d("MEKGO","OnBindViewHolder BookListAdapter")
         //val current2:Author= authors[position]
-        holder.bookItemViewTitle.text=current.titulo
+        holder.bookItemViewTitle.text=currentBook.titulo
+        //holder.bookItemViewAuthor.text=currentAuthor.name_author
+
         //holder.bookItemViewTitle.text=current2.name_author
         //holder.bind(booksList[position] /**, clickListener**/)
 
@@ -66,6 +71,11 @@ class BookListAdapter internal constructor(context: Context):RecyclerView.Adapte
         this.booksList=books
         notifyDataSetChanged()
 
+    }
+
+    internal fun setAuthors(author: List<Author>){
+        this.authorsList=author
+        notifyDataSetChanged()
     }
 
 }

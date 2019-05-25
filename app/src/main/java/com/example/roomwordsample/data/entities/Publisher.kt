@@ -15,5 +15,5 @@ class Publisher (
 ){
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "publisher_id")
-    var id_publisher:Int=0
+    var id_publisher:Int=1
 }

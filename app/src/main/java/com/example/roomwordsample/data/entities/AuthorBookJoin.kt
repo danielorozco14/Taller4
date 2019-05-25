@@ -18,7 +18,6 @@ import androidx.room.ForeignKey
             parentColumns = arrayOf("book_id"),
             childColumns = arrayOf("bookID")))
 )
-
 class AuthorBookJoin(
 
     @ColumnInfo(name = "authorID")

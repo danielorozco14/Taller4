@@ -1,11 +1,8 @@
 package com.example.roomwordsample.data.entities
 
 import android.media.Image
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
+import androidx.room.*
 import androidx.room.ForeignKey.CASCADE
-import androidx.room.PrimaryKey
 
 /**
  * Class that works as an Sql Table

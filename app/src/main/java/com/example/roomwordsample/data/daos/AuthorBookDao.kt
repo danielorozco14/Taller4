@@ -1,6 +1,7 @@
 package com.example.roomwordsample.data.daos
 
 import androidx.core.provider.FontsContractCompat
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -28,7 +29,7 @@ interface AuthorBookDao {
     List<Repo> getRepositoriesForUsers(final int userId);
      */
     @Query("SELECT * FROM Author_table INNER JOIN AuthorxBook ON Author_table.id_author=AuthorxBook.authorID WHERE AuthorxBook.bookID=:authorID")
-    fun getAuthorsOfBooks(authorID:Int):List<Author>
+    fun getAuthorsOfBooks(authorID:Int):LiveData<List<Author>>
 
     @Query("SELECT * FROM BOOK_TABLE INNER JOIN AUTHORXBOOK ON Book_Table.book_id=AuthorxBook.bookID WHERE AuthorxBook.bookID=:bookID")
     fun getBooksOfAuthors(bookID:Int):List<Book>
