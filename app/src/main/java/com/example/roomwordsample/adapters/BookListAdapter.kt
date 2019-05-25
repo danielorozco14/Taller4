@@ -56,12 +56,12 @@ class BookListAdapter internal constructor(context: Context):RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
         val currentBook = booksList[position]
-        //val currentAuthor=authorsList[position]
+        val currentAuthor=authorsList[position]
         Log.d("MEKGO","OnBindViewHolder BookListAdapter")
         //val current2:Author= authors[position]
         holder.bookItemViewTitle.text=currentBook.titulo
         holder.bookItemViewResumen.text=currentBook.resumen
-        //holder.bookItemViewAuthor.text=currentAuthor.name_author
+        holder.bookItemViewAuthor.text=currentAuthor.name_author
 
         //holder.bookItemViewTitle.text=current2.name_author
         //holder.bind(booksList[position] /**, clickListener**/)

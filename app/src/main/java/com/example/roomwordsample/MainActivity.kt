@@ -46,11 +46,11 @@ class MainActivity : AppCompatActivity() {
                 adapter.setBooks(it)
             }
         })
-        /**bookViewModel.allAuthors.observe(this, Observer { authors ->
+        bookViewModel.allAuthors.observe(this, Observer { authors ->
             authors?.let {
                 adapter.setAuthors(it)
             }
-        })**/
+        })
 
         //CUANDO EL USUARIO TOCA EL BOTON '+' SE LANZA LA ACTIVIDAD
         fab.setOnClickListener { view ->
@@ -88,10 +88,10 @@ class MainActivity : AppCompatActivity() {
             data?.let {
 
                 val publisher=Publisher(it.getStringExtra(NewWordActivity.EXTRA_BOOK_PUBLISHER))
-               // bookViewModel.insertPublisherViewModel(publisher)
+                bookViewModel.insertPublisherViewModel(publisher)
 
                 val author=Author(it.getStringExtra(NewWordActivity.EXTRA_BOOK_AUTHOR))
-               // bookViewModel.insertAuthorViewModel(author)
+                bookViewModel.insertAuthorViewModel(author)
                 Log.d("MEKGO","ON ACTIVITY RESULT")
 
                 //TODO 1.POSIBLE ERROR EN PARAMETRO publisher.idpublisher

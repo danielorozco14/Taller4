@@ -23,7 +23,7 @@ class BookViewModel(application: Application):AndroidViewModel(application){
 
     //VARIABLE QUE CONTIENE LA LISTA DE LIBROS
     val allBooks:LiveData<List<Book>>
-    //val allAuthors:LiveData<List<Author>>
+    val allAuthors:LiveData<List<Author>>
     //val allPublishers:LiveData <List<Publisher>>
     //val allTags:LiveData<List<Tags>>
 
@@ -41,7 +41,7 @@ class BookViewModel(application: Application):AndroidViewModel(application){
         bookRepository= BookRepository(bookDao,authorDao,publisherDao)//,tagsDao)
 
         allBooks= bookRepository.allBooks
-       // allAuthors=bookRepository.allAuthors
+        allAuthors=bookRepository.allAuthors
        // allPublishers=bookRepository.allPublisher
         //allTags=bookRepository.allTags
     }
@@ -51,13 +51,13 @@ class BookViewModel(application: Application):AndroidViewModel(application){
         bookRepository.insertBookRepository(book)
     }
 
-    /**fun insertAuthorViewModel(author:Author)= viewModelScope.launch (Dispatchers.IO){
+    fun insertAuthorViewModel(author:Author)= viewModelScope.launch (Dispatchers.IO){
         bookRepository.insertAuthorsRepository(author)
     }
 
     fun insertPublisherViewModel(publisher: Publisher)=viewModelScope.launch (Dispatchers.IO){
         bookRepository.insertPublishersRepository(publisher)
-    }**/
+    }
 
     /**fun insertTagsViewModel(tags: Tags)=viewModelScope.launch (Dispatchers.IO){
         bookRepository.insertTagsRepository(tags)
